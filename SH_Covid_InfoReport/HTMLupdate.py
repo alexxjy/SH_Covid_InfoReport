@@ -15,15 +15,46 @@ body = document('body')
 ## body stands for <body> </body>
 
 
-for i in document.items("div.titleblock > h2"):
-    i.replace_with('<h2> Covid Info </h2>')
-    print(i.text())
+# for i in document.items("div.titleblock > h2"):
+#     i.replace_with('<h2> Covid Info </h2>')
+#     print(i.text())
 # NEED: 
 
+# replace covid news bulletin
+countnews = 0
 for i in document.items("div > table.summarytable"):
+    if countnews == 2:
+        print(i.text()) # EXPECTED: 4月9日：全员核酸
+    if countnews == 4:
+        print(i.text()) # EXPECTED: 暂无
+    countnews = countnews + 1
+
+
+# replace table bulletin
+# EXPECTED: 6、7、21
+# 解封:55,57,59<br>新增:21
+# 无
+for i in document.items("div > table.summarytable > tbody > tr > td"):
     print(i.text())
 
-for i in document.items("div > table.summarytable"):
+# replace specifictable
+# EXPECTED: 6
+# 1
+# 0
+# 0
+# 1
+# /
+# 7
+# 1
+# 0
+# 0
+# 1
+# /
+# Actual: 6、7、21
+# 解封:55,57,59
+# 新增:21
+# 无
+for i in document.items("div > table.specifictable > tbody > tr "):
     print(i.text())
 
     
