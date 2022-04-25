@@ -16,6 +16,7 @@ body = document('body')
 
 
 for i in document.items("div.titleblock > h2"):
+    i.replace_with('<h2> Covid Info </h2>')
     print(i.text())
 # NEED: 
 
@@ -37,6 +38,13 @@ def input():
     except:
         print('Error, cannot find class')
 
+# update html
+def update_html(outputfile):
+    test2 = open(outputfile, "w")
+    #write string to file
+    test2.write(document.__str__())
+    #close file
+    test2.close()
 
 # convert html to pdf
 # FIXME: cannot display head background
@@ -48,5 +56,7 @@ def convert_to_pdf(file_name):
 def convert_to_image(filename):
     imgkit.from_file(filename, 'out.jpg')
 
+
+update_html('test2.html')
 convert_to_pdf('test.html')
 convert_to_image('test.html')
