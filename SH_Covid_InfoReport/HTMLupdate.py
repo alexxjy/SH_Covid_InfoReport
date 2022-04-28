@@ -14,28 +14,43 @@ body = document('body')
 # print(body)
 ## body stands for <body> </body>
 
+def read_input():
+    neighborhoodname = input("请输入小区名称：")
+    todaynews = input("请输入今日通知：")
+    tomorrownews = input("请输入明日通知：")
+    positivetestbuilding = input("请输入阳性病例涉及楼栋：")
+    mixedtestbuilding = input("请输入混管检测异常楼栋：")
+    antigentestbuilding = input("请输入抗原自检异常楼栋：")
+    return neighborhoodname, todaynews, tomorrownews, positivetestbuilding, mixedtestbuilding, antigentestbuilding
 
-# for i in document.items("div.titleblock > h2"):
-#     i.replace_with('<h2> Covid Info </h2>')
-#     print(i.text())
+
+neighborhood, todaynews, tomorrownews, posittest, mixedtest, antigentest = read_input()
+print("neighborhood is:")
+print(neighborhood)
+
+for i in document.items("div.titleblock > h2"):
+    temp = pq('<h2> ' + neighborhood +' </h2>')
+    i.replace_with(temp)
+    print(i)
 # NEED: 
 
 # replace covid news bulletin
-countnews = 0
-for i in document.items("div > table.summarytable"):
-    if countnews == 2:
-        print(i.text()) # EXPECTED: 4月9日：全员核酸
-    if countnews == 4:
-        print(i.text()) # EXPECTED: 暂无
-    countnews = countnews + 1
+# countnews = 0
+# for i in document.items("div > table.summarytable"):
+#     if countnews == 2:
+#         print(i.text()) # EXPECTED: 4月9日：全员核酸
+#     if countnews == 4:
+#         print(i.text()) # EXPECTED: 暂无
+#     countnews = countnews + 1
 
 
 # replace table bulletin
 # EXPECTED: 6、7、21
 # 解封:55,57,59<br>新增:21
 # 无
-for i in document.items("div > table.summarytable > tbody > tr > td"):
-    print(i.text())
+# AS EXPECTED
+# for i in document.items("div > table.summarytable > tbody > tr > td"):
+#     print(i.text())
 
 # replace specifictable
 # EXPECTED: 6
@@ -50,10 +65,7 @@ for i in document.items("div > table.summarytable > tbody > tr > td"):
 # 0
 # 1
 # /
-# Actual: 6、7、21
-# 解封:55,57,59
-# 新增:21
-# 无
+# Actual: NULL
 for i in document.items("div > table.specifictable > tbody > tr "):
     print(i.text())
 
