@@ -30,7 +30,8 @@ print(neighborhood)
 
 for i in document.items("div.titleblock > h2"):
     temp = pq('<h2> ' + neighborhood +' </h2>')
-    i.replace_with(temp)
+# FIXME: why this cannot replace string?
+    i.replace_with("aaa")
     print(i)
 # NEED: 
 
